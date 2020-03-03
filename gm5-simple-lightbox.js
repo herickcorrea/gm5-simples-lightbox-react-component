@@ -3,7 +3,6 @@ import InlineSVG from 'svg-inline-react';
 import $ from 'jquery';
 
 import SimpleSwiper from './SimpleSwiper';
-import Imagem from './Imagem';
 
 import "./gm5_lightbox_react.css";
 
@@ -31,6 +30,7 @@ class GM5_Simple_Lightbox extends Component
         
         this._LightboxGallery   = this._LightboxGallery.bind(this);
         this._LightboxVideo     = this._LightboxVideo.bind(this);
+        this._LightboxImage     = this._LightboxImage.bind(this);
         this._closeLightbox     = this._closeLightbox.bind(this);
     }
 
@@ -62,13 +62,7 @@ class GM5_Simple_Lightbox extends Component
                 htmlSlide += `
                     <li class="swiper-slide">
                         <div class="videoWrapper">
-                             ${<Imagem
-                                    classes="imgLazyLoad"
-                                    image={value.image_full}
-                                    thumbnail={value.image_thumbnail}
-                                    width={filme.width}
-                                    height={filme.height}
-                            />}
+                             <img src="${value.image}" />
                         </div>
                     </li>
                 `;
@@ -82,7 +76,7 @@ class GM5_Simple_Lightbox extends Component
     {
         $('#GM5ligthbox').css({ 'display': 'block' })
         $('#GM5ligthbox .overlay').stop().animate({ opacity: 1 }, 200, function () {
-            $(this).find('.swiper-container, .htmlContainer, .videoContainer').stop().animate({ opacity: 1 }, 200);
+            $(this).find('.swiper-container, .htmlContainer, .videoContainer, .imageContainer').stop().animate({ opacity: 1 }, 200);
         });
 
         console.log('open vdeo')
@@ -178,8 +172,6 @@ class GM5_Simple_Lightbox extends Component
                 </div>
             </div>`;
         
-        console.log(htmlSlide)
-
         $('#__next').prepend(htmlSlide);
 
         self._openLightbox();
@@ -196,6 +188,44 @@ class GM5_Simple_Lightbox extends Component
 
                 if (!container.is(e.target) && container.has(e.target).length === 0)
                 {
+                    self._closeLightbox();
+                }
+            });
+        }
+    }
+
+    _LightboxImage()
+    {
+        let self = this;
+
+        var htmlSlide = `
+            <div id="GM5ligthbox" class="video">
+                <div class="overlay">
+                    <a href="#" class="GM5lightboxClose">
+                        <svg x="0px" y="0px" viewBox="0 0 298.667 298.667" style="enable-background:new 0 0 298.667 298.667;" xml:space="preserve">
+                            <polygon points="298.667,30.187 268.48,0 149.333,119.147 30.187,0 0,30.187 119.147,149.333 0,268.48 30.187,298.667 149.333,179.52 268.48,298.667 298.667,268.48 179.52,149.333"/>
+                        </svg>
+                    </a>
+                    <div class="imageContainer">
+                        <img src="${this.props.image}" />
+                    </div>
+                    <i class="icon-spin4 animate-spin" aria-hidden="true"></i>
+                </div>
+            </div>`;
+
+        $('#__next').prepend(htmlSlide);
+
+        self._openLightbox();
+
+        $('#GM5ligthbox a.GM5lightboxClose').on('click', function () {
+            self._closeLightbox();
+        });
+
+        if ($('#GM5ligthbox')) {
+            $(document).mouseup(function (e) {
+                var container = $('#GM5ligthbox .overlay .videoContainer');
+
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
                     self._closeLightbox();
                 }
             });
@@ -269,10 +299,20 @@ class GM5_Simple_Lightbox extends Component
             )
         }
 
-        if (type == 'video') {
+        if (type == 'video')
+        {
             return (
                 <a href="#" title={this.props.label} className={this.props.class + ' gm5-lightbox-ignite'} onClick={this._LightboxVideo}>
-                    {this.props.label}
+                    {(this.props.label) ? <div className='content' dangerouslySetInnerHTML={createMarkup(this.props.label)} /> : ''}
+                </a>
+            )
+        }
+
+        if (type == 'image')
+        {
+            return (
+                <a href="#" title={this.props.label} className={this.props.class + ' gm5-lightbox-ignite'} onClick={this._LightboxImage}>
+                    {(this.props.label) ? <div className='content' dangerouslySetInnerHTML={createMarkup(this.props.label)} /> : ''}
                 </a>
             )
         }
