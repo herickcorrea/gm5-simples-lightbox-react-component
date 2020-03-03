@@ -16,22 +16,23 @@ Dependencies:
 <h3>Single Images</h3>
 <code>
 <pre>
+
 // BUTTON WITH TEXT LABEL (can use HTML tags)
 
 &lt;GM5_Simple_Lightbox
-	type='image'
-	label='<span>Click to open image</span>'
+	type='image' // Required
+	label='<span>Click to open image</span>' // Required
 	class='some-css-class'
-	image='https://cannes.tur.br/wp-content/uploads/2017/05/rio-de-janeiro-wallpaper-high-resolution-hd-background-hd-screensavers-....jpg'
+	image='https://cannes.tur.br/wp-content/uploads/2017/05/rio-de-janeiro-wallpaper-high-resolution-hd-background-hd-screensavers-....jpg' // Required
 /&#62;
 
 // BUTTON WITH THUMBNAIL (can use HTML IMG tag)
 
 &lt;GM5_Simple_Lightbox
-	type='image'
-	label='&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS3fZ1AOXQACkBNmAdUFlNgDf8FT9P8irq8ykWqS_Bpw8RFCZd9" /&#62;'
+	type='image' // Required
+	label='&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS3fZ1AOXQACkBNmAdUFlNgDf8FT9P8irq8ykWqS_Bpw8RFCZd9" /&#62;' // Required
 	class='some-css-class'
-	image='https://cannes.tur.br/wp-content/uploads/2017/05/rio-de-janeiro-wallpaper-high-resolution-hd-background-hd-screensavers-....jpg'
+	image='https://cannes.tur.br/wp-content/uploads/2017/05/rio-de-janeiro-wallpaper-high-resolution-hd-background-hd-screensavers-....jpg' // Required
 /&#62;
 </pre>
 </code>
