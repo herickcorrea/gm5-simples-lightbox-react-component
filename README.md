@@ -49,8 +49,9 @@ To generate promotional coupons, look for augmented reality posters in the windo
 </pre>
 </code>
 <h3>Gallery Swiper with pictures and videos</h3>
-<h4><strong>It's not working yet</strong>I</h4>
+<h4><strong>It's not working yet!</strong></h4>
 <code>
+<pre>
 &lt;GM5_Simple_Lightbox
 	type='gallery'
 	label="Click to See the Gallery"  //Label and title of button <a>
@@ -71,4 +72,5 @@ To generate promotional coupons, look for augmented reality posters in the windo
 	    	]
 	}
 /&#62;
+</pre>
 </code>
