@@ -17,10 +17,10 @@ Dependencies:
 <code>
 <pre>
 &lt;GM5_Simple_Lightbox
-type='html'
+	type='html'
 	title='The title of my content'
 	className='some-css-class'
-	content='<h2>Para gerar cupons de promoções, procure os cartazes de realidade aumentada nas vitrines das lojas participantes da promoção.</h2>'
+	content='&lt;h2&#62;Para gerar cupons de promoções, procure os cartazes de realidade aumentada nas vitrines das lojas participantes da promoção.&lt;/h2&#62;'
 	buttons={
 	    [
 		{
