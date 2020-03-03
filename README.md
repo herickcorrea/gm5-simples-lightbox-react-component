@@ -14,7 +14,7 @@ Dependencies:
 <code>import GM5_Simple_Lightbox from '../components/gm5-simple-lightbox';</code>
 <h2>Using Component</h2>
 <h3>Single Video</h3>
-<code>
+<code><pre>
    <GM5_Simple_Lightbox
       type='video'
       title="Assistir Trailer"
@@ -28,4 +28,4 @@ Dependencies:
           ]
       }
   />
-</code>
+</pre></code>
