@@ -20,7 +20,8 @@ Dependencies:
 	type='html'
 	title='The title of my content'
 	className='some-css-class'
-	content='&lt;h2&#62;Para gerar cupons de promoções, procure os cartazes de realidade aumentada nas vitrines das lojas participantes da promoção.&lt;/h2&#62;'
+	content='&lt;h2&#62;
+To generate promotional coupons, look for augmented reality posters in the windows of the stores participating in the promotion.&lt;/h2&#62;'
 	buttons={
 	    [
 		{
@@ -48,7 +49,7 @@ Dependencies:
 </pre>
 </code>
 <h3>Gallery Swiper with pictures and videos</h3>
-<h4><strong>It's not working yet</h4>
+<h4><strong>It's not working yet</strong>I</h4>
 <code>
 &lt;GM5_Simple_Lightbox
 	type='gallery'
