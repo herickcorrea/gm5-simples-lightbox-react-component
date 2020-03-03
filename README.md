@@ -15,10 +15,12 @@ Dependencies:
 <h2>Using Component</h2>
 <h3>Single Video</h3>
 <code>
+<pre>
 &lt;GM5_Simple_Lightbox
 	type="video"
 	title="Assistir Trailer"
 	class="trailer"
 	video="https://videopress.com/embed/rMmjE65Y"
 /&#62;
+</pre>
 </code>
