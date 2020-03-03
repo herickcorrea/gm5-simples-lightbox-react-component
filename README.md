@@ -61,8 +61,8 @@ To generate promotional coupons, look for augmented reality posters in the windo
 			{
 		    		image_full: "https://c1.staticflickr.com/9/8185/29188230410_76cc92e97c_b.jpg",
 				image_thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcScCrJ_qsEZ2Njvns5AV9eXV-WdBbAYq81AbKzGZ3V767Z95C0J", //This thumbnail is necessary. If yout don´t have, you can repeat the full image here.
-				width: 947,
-				height: 555,
+				width: 947, // It's not mandatory.
+				height: 555, // It's not mandatory. Only works when it has width
 		    		type: 'image'
 			},
 			{
