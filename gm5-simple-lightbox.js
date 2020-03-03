@@ -3,6 +3,7 @@ import InlineSVG from 'svg-inline-react';
 import $ from 'jquery';
 
 import SimpleSwiper from './SimpleSwiper';
+import Imagem from './Imagem';
 
 import "./gm5_lightbox_react.css";
 
@@ -29,6 +30,7 @@ class GM5_Simple_Lightbox extends Component
         };
         
         this._LightboxGallery   = this._LightboxGallery.bind(this);
+        this._LightboxVideo     = this._LightboxVideo.bind(this);
         this._closeLightbox     = this._closeLightbox.bind(this);
     }
 
@@ -49,7 +51,24 @@ class GM5_Simple_Lightbox extends Component
                 htmlSlide += `
                     <li class="swiper-slide">
                         <div class="videoWrapper">
-                            <iframe allowfullscreen="allowfullscreen" frameborder="0" src="//www.youtube-nocookie.com/embed/${value.id_video}?autoplay=1&amp;autohide=1&amp;fs=1&amp;rel=0&amp;hd=1&amp;enablejsapi=1&amp;html5=1" scrolling="no"></iframe>
+                            <iframe allowfullscreen="allowfullscreen" frameborder="0" src="//www.youtube-nocookie.com/embed/${value.url_video}?autoplay=1&amp;autohide=1&amp;fs=1&amp;rel=0&amp;hd=1&amp;enablejsapi=1&amp;html5=1" scrolling="no"></iframe>
+                        </div>
+                    </li>
+                `;
+            }
+
+            if (value.type == 'image')
+            {
+                htmlSlide += `
+                    <li class="swiper-slide">
+                        <div class="videoWrapper">
+                             ${<Imagem
+                                    classes="imgLazyLoad"
+                                    image={value.image_full}
+                                    thumbnail={value.image_thumbnail}
+                                    width={filme.width}
+                                    height={filme.height}
+                            />}
                         </div>
                     </li>
                 `;
@@ -63,13 +82,15 @@ class GM5_Simple_Lightbox extends Component
     {
         $('#GM5ligthbox').css({ 'display': 'block' })
         $('#GM5ligthbox .overlay').stop().animate({ opacity: 1 }, 200, function () {
-            $(this).find('.swiper-container, .htmlContainer').stop().animate({ opacity: 1 }, 200);
+            $(this).find('.swiper-container, .htmlContainer, .videoContainer').stop().animate({ opacity: 1 }, 200);
         });
+
+        console.log('open vdeo')
     }   
 
     _closeLightbox()
     {        
-        $('#GM5ligthbox .overlay, #GM5ligthbox .overlay .swiper-container, #GM5ligthbox .overlay .htmlContainer').stop().animate({ opacity : 0 },300,function()
+        $('#GM5ligthbox .overlay, #GM5ligthbox .overlay .swiper-container, #GM5ligthbox .overlay .htmlContainer, #GM5ligthbox .overlay .videoContainer').stop().animate({ opacity : 0 },300,function()
         {
             $('#GM5ligthbox').remove();
         });
@@ -80,7 +101,7 @@ class GM5_Simple_Lightbox extends Component
 
             if (!container.is(e.target) && container.has(e.target).length === 0)
             {
-                $('#GM5ligthbox .overlay, #GM5ligthbox .overlay .swiper-container, #GM5ligthbox .overlay .htmlContainer').stop().animate({ opacity : 0 },300,function()
+                $('#GM5ligthbox .overlay, #GM5ligthbox .overlay .swiper-container, #GM5ligthbox .overlay .htmlContainer, #GM5ligthbox .overlay .videoContainer').stop().animate({ opacity : 0 },300,function()
                 {
                     $('#GM5ligthbox').remove();
 
@@ -124,7 +145,7 @@ class GM5_Simple_Lightbox extends Component
         {
             $(document).mouseup(function(e)
             {
-                var container = $('#GM5ligthbox .overlay .swiper-container, #GM5ligthbox .overlay .htmlContainer');
+                var container = $('#GM5ligthbox .overlay .swiper-container');
 
                 if (!container.is(e.target) && container.has(e.target).length === 0)
                 {
@@ -134,84 +155,52 @@ class GM5_Simple_Lightbox extends Component
         }
     }
 
-    // _LightboxHTML(params)
-    // {
-    //     let self = this;
+    _LightboxVideo()
+    {
+        let self = this;
 
-    //     const buttons = params.buttons;
+        console.log('video')
 
-    //     function CallBack(params)
-    //     {
-    //         console.log(params.callback)
-    //         //params.callback;
-    //     }
-
-    //     function returnButtons()
-    //     {
-    //         if (buttons && buttons.length > 0)
-    //         {
-    //             let html = '<ul class="buttons">';
-
-    //             //${ /*  */ }
-
-    //             for (var i = 0; i < buttons.length; i++)
-    //             {
-    //                 html += `                        
-    //                     <li>
-    //                         <button style="${'backgroundColor:' + buttons[i].cor}">${buttons[i].label}</button>
-    //                     </li>
-    //                 `;
-
-    //                 CallBack(buttons[i].callback);
-    //             }
-
-    //             html += '</ul>';
-                    
-    //             return html;
-    //         }
-    //     }
-
-    //     var htmlContent = `
-    //         <div id="GM5ligthbox" class="${params.className}">
-    //             <div class="overlay">
-    //                 <a href="#" class="GM5lightboxClose">
-    //                     <svg x="0px" y="0px" viewBox="0 0 298.667 298.667" style="enable-background:new 0 0 298.667 298.667;" xml:space="preserve">
-    //                         <polygon points="298.667,30.187 268.48,0 149.333,119.147 30.187,0 0,30.187 119.147,149.333 0,268.48 30.187,298.667 149.333,179.52 268.48,298.667 298.667,268.48 179.52,149.333"/>
-    //                     </svg>
-    //                 </a>
-    //                 <div class="htmlContainer">
-    //                     <div class="htmlWraper"> 
-    //                         ${ (params.title) ? '<h1>'+params.title +'</h1>' : '' }
-    //                         ${params.content}
-    //                         ${returnButtons()}
-    //                     </div>
-    //                 </div>
-    //                 <i class="icon-spin4 animate-spin" aria-hidden="true"></i>
-    //             </div>
-    //         </div>
-    //     `;
-
-    //     $('#__next').append(htmlContent);
+        var htmlSlide = `
+            <div id="GM5ligthbox" class="video">
+                <div class="overlay">
+                    <a href="#" class="GM5lightboxClose">
+                        <svg x="0px" y="0px" viewBox="0 0 298.667 298.667" style="enable-background:new 0 0 298.667 298.667;" xml:space="preserve">
+                            <polygon points="298.667,30.187 268.48,0 149.333,119.147 30.187,0 0,30.187 119.147,149.333 0,268.48 30.187,298.667 149.333,179.52 268.48,298.667 298.667,268.48 179.52,149.333"/>
+                        </svg>
+                    </a>
+                    <div class="videoContainer">
+                        <div class="wrapVideo">
+                            <iframe allowfullscreen="allowfullscreen" frameborder="0" src="${this.props.video}" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                    <i class="icon-spin4 animate-spin" aria-hidden="true"></i>
+                </div>
+            </div>`;
         
-    //     self._openLightbox();
+        console.log(htmlSlide)
 
-    //     $('#GM5ligthbox a.GM5lightboxClose').on('click', function ()
-    //     {
-    //         self._closeLightbox();
-    //     });
+        $('#__next').prepend(htmlSlide);
 
-    //     if ($('#GM5ligthbox'))
-    //     {
-    //         $(document).mouseup(function (e)
-    //         {
-    //             var container = $('#GM5ligthbox .overlay .htmlContainer');
+        self._openLightbox();
 
-    //             if (!container.is(e.target) && container.has(e.target).length === 0) {
-    //                 self._closeLightbox();
-    //             }
-    //         });
-    //     }
-    // }
+        $('#GM5ligthbox a.GM5lightboxClose').on('click', function () {
+            self._closeLightbox();
+        });
+
+        if( $('#GM5ligthbox') )
+        {
+            $(document).mouseup(function(e)
+            {
+                var container = $('#GM5ligthbox .overlay .videoContainer');
+
+                if (!container.is(e.target) && container.has(e.target).length === 0)
+                {
+                    self._closeLightbox();
+                }
+            });
+        }
+    }
 
     _CallBack(e,attributes)
     {
@@ -231,12 +220,12 @@ class GM5_Simple_Lightbox extends Component
     {
         const type = this.props.type;
 
-        if (this.state.DocumentReady)
+        if (type == 'html')
         {
-            if (type == 'html')
+            if (this.state.DocumentReady)
             {
                 return (
-                    <div id="GM5ligthbox" className={this.props.className} style={{ display: 'block' }}>
+                    <div id="GM5ligthbox" className={'default '+(this.props.className) ? this.props.className : ''} style={{ display: 'block' }}>
                         <div className="overlay" style={{ opacity: 1 }}>
                             <a href="#" className="GM5lightboxClose" onClick={this._closeLightbox()}><InlineSVG src={svgCloseIcon} /></a>
                             <div className="htmlContainer" style={{ display: 'block', opacity: 1 }}>
@@ -263,21 +252,29 @@ class GM5_Simple_Lightbox extends Component
                     </div>
                 )
             }
-
-            if (type == 'gallery')
+            else
             {
                 return (
-                    <a href="#" title={this.props.label} className={this.props.class + ' gm5-lightbox-ignite'} onClick={this._LightboxGallery}>
-                        {this.props.label}
-                    </a>
-                )
-            }
+                    <div id="preloader"><i className="icon-spin4 animate-spin" aria-hidden="true"></i></div>
+                );
+            }            
         }
-        else
+
+        if (type == 'gallery')
         {
             return (
-                <div id="preloader"><i className="icon-spin4 animate-spin" aria-hidden="true"></i></div>
-            );
+                <a href="#" title={this.props.label} className={this.props.class + ' gm5-lightbox-ignite'} onClick={this._LightboxGallery}>
+                    {this.props.label}
+                </a>
+            )
+        }
+
+        if (type == 'video') {
+            return (
+                <a href="#" title={this.props.label} className={this.props.class + ' gm5-lightbox-ignite'} onClick={this._LightboxVideo}>
+                    {this.props.label}
+                </a>
+            )
         }
     }
     //endregion

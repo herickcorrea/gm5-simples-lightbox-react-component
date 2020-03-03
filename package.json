@@ -2,7 +2,7 @@
   "name": "gm5-simple-lightbox",
   "version": "1.0.0",
   "description": "Simple Lightbox",
-  "main": "GM5_Simple_Lightbox.js",
+  "main": "gm5-simple-lightbox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,7 @@
   "homepage": "https://github.com/herickcorrea/gm5-simples-lightbox-react-component#readme",
   "dependencies": {
     "jquery": "^3.4.1",
+    "react": "^16.12.0",
     "react-id-swiper": "^3.0.0",
     "svg-inline-react": "^3.2.0"
   }
