@@ -16,7 +16,6 @@ Dependencies:
 <h3>Single Images</h3>
 <code>
 <pre>
-
 // BUTTON WITH TEXT LABEL (can use HTML tags)
 
 &lt;GM5_Simple_Lightbox
