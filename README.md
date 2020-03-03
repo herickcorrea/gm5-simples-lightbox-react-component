@@ -16,7 +16,6 @@ Dependencies:
 <h3>Single Images</h3>
 <code>
 <pre>
-
 // BUTTON WITH TEXT LABEL (can use HTML tags)
 
 &lt;GM5_Simple_Lightbox
@@ -30,11 +29,10 @@ Dependencies:
 
 &lt;GM5_Simple_Lightbox
 	type='image'
-	label='<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS3fZ1AOXQACkBNmAdUFlNgDf8FT9P8irq8ykWqS_Bpw8RFCZd9" />'
+	label='&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS3fZ1AOXQACkBNmAdUFlNgDf8FT9P8irq8ykWqS_Bpw8RFCZd9" /&#62;'
 	class='some-css-class'
 	image='https://cannes.tur.br/wp-content/uploads/2017/05/rio-de-janeiro-wallpaper-high-resolution-hd-background-hd-screensavers-....jpg'
 /&#62;
-
 </pre>
 </code>
 <h3>HTML Content</h3>
