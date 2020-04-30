@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/herickcorrea/gm5-simples-lightbox-react-component#readme",
   "dependencies": {
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "react": "^16.12.0",
     "react-id-swiper": "^3.0.0",
     "svg-inline-react": "^3.2.0"
